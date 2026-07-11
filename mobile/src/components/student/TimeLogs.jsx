@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import styles from "../../styles/student/timeLogs.styles";
 import BottomNavStudent from "../navigation/BottomNavStudent";
+import NotificationPopup from "../others/NotificationPopup";
 
 import Mon from "./TimeLogs/Mon";
 import Tue from "./TimeLogs/Tue";
@@ -23,6 +24,7 @@ import Sun from "./TimeLogs/Sun";
 const TimeLogs = () => {
 
   const navigation = useNavigation();
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -45,14 +47,18 @@ const TimeLogs = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
-        <View style={styles.headerProfileIcon}>
-          <TouchableOpacity onPress={() => navigation.navigate("ProfileStudent")}>
-            <Ionicons
-              name="person-circle-outline"
-              size={37}
-              color="black"
-            />
-          </TouchableOpacity>
+        <View style={styles.iconContainer}>
+          <View style={styles.notificationIcon}>
+            <TouchableOpacity
+              onPress={() => setShowNotifications(!showNotifications)}
+            >
+              <Ionicons
+                name="notifications-outline"
+                size={25}
+                color="black"
+              />
+            </TouchableOpacity>
+          </View>         
         </View>
       </View>
 
@@ -85,6 +91,8 @@ const TimeLogs = () => {
           <ActiveComponent />
         </View>
       </View>
+
+      <NotificationPopup visible={showNotifications} onClose={() => setShowNotifications(false)} />
 
       <BottomNavStudent active="timelogs" />
     </ScrollView>

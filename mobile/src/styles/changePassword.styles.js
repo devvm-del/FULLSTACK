@@ -17,7 +17,15 @@ export default StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginBottom: 15
+    marginBottom: 15,
+    color: '#3f6b2f'
+  },
+
+  changePassContainer: {
+    
+    padding: 15,
+    backgroundColor: '#fff',
+    borderRadius: 15
   },
 
   subtitle: {

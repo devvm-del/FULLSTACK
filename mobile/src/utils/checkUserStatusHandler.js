@@ -9,7 +9,9 @@ export const checkUserStatus = async (navigation) => {
       error.message ===
       "Your account has been disabled. Please contact the administrator."
     ) {
-      await AsyncStorage.multiRemove(["token", "user"]);
+
+      await AsyncStorage.removeItem("token");
+      await AsyncStorage.removeItem("user");
 
       navigation.reset({
         index: 0,

@@ -68,65 +68,67 @@ const ChangePassword = () => {
 
       <View style={styles.content}>
         <Text style={styles.title}>Change Password </Text>
-        <IconTextInput
-          icon="lock-closed-outline"
-          placeholder="Current Password"
-          secureTextEntry
-          value={currentPassword}
-          onChangeText={(text) => {
-            setCurrentPassword(text);
-            setCurrentPasswordError("");
-          }}
-        />
+        <View style={styles.changePassContainer}>
+          <IconTextInput
+            icon="lock-closed-outline"
+            placeholder="Current Password"
+            secureTextEntry
+            value={currentPassword}
+            onChangeText={(text) => {
+              setCurrentPassword(text);
+              setCurrentPasswordError("");
+            }}
+          />
 
-        {currentPasswordError ? (
-          <Text style={{ color: "red", marginTop: 0 }}>
-            {currentPasswordError}
-          </Text>
-        ) : null}
+          {currentPasswordError ? (
+            <Text style={{ color: "red", marginTop: 0 }}>
+              {currentPasswordError}
+            </Text>
+          ) : null}
 
-        <IconTextInput
-          icon="key-outline"
-          placeholder="New Password"
-          secureTextEntry
-          value={newPassword}
-          onChangeText={(text) => {
-            setNewPassword(text);
-            setNewPasswordError("");
-          }}
-        />
+          <IconTextInput
+            icon="key-outline"
+            placeholder="New Password"
+            secureTextEntry
+            value={newPassword}
+            onChangeText={(text) => {
+              setNewPassword(text);
+              setNewPasswordError("");
+            }}
+          />
 
-        {newPasswordError ? (
-          <Text style={{ color: "red", marginTop: 0 }}>{newPasswordError}</Text>
-        ) : null}
+          {newPasswordError ? (
+            <Text style={{ color: "red", marginTop: 0 }}>{newPasswordError}</Text>
+          ) : null}
 
-        <IconTextInput
-          icon="checkmark-circle-outline"
-          placeholder="Confirm Password"
-          secureTextEntry
-          value={confirmPassword}
-          onChangeText={(text) => {
-            setConfirmPassword(text);
-            setConfirmPasswordError("");
-          }}
-        />
+          <IconTextInput
+            icon="checkmark-circle-outline"
+            placeholder="Confirm Password"
+            secureTextEntry
+            value={confirmPassword}
+            onChangeText={(text) => {
+              setConfirmPassword(text);
+              setConfirmPasswordError("");
+            }}
+          />
 
-        {confirmPasswordError ? (
-          <Text style={{ color: "red", marginTop: 0 }}>
-            {confirmPasswordError}
-          </Text>
-        ) : null}
+          {confirmPasswordError ? (
+            <Text style={{ color: "red", marginTop: 0 }}>
+              {confirmPasswordError}
+            </Text>
+          ) : null}
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={onChangePassword}
-          disabled={loading}
-        >
-          <Ionicons name="create-outline" size={24} color="white" />
-          <Text style={styles.buttonText}>
-            {loading ? "Saving..." : "Save Changes"}
-          </Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={onChangePassword}
+            disabled={loading}
+          >
+            <Ionicons name="create-outline" size={24} color="white" />
+            <Text style={styles.buttonText}>
+              {loading ? "Saving..." : "Save Changes"}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <AppModal

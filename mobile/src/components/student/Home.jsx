@@ -11,15 +11,16 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 import styles from "../../styles/student/home.styles";
 import BottomNavStudent from "../navigation/BottomNavStudent";
-
+import NotificationPopup from "../others/NotificationPopup";
 
 const Home = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState(null);
- 
+
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -33,18 +34,25 @@ const Home = () => {
     loadUser();
   }, []);
 
-  return ( 
+  return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
-          <View style={styles.headerProfileIcon}>
-          <TouchableOpacity onPress={() => navigation.navigate("ProfileStudent")}>
-            <Ionicons name="person-circle-outline" size={37} color="black" />
-          </TouchableOpacity>
+          <View style={styles.iconContainer}>
+            <View style={styles.notificationIcon}>
+              <TouchableOpacity
+                onPress={() => setShowNotifications(!showNotifications)}
+              >
+                <Ionicons
+                  name="notifications-outline"
+                  size={25}
+                  color="black"
+                />
+              </TouchableOpacity>
+            </View>         
           </View>
         </View>
         <View style={styles.content}>
-
           <Text style={styles.title}>Welcome Back, {user?.full_name}</Text>
 
           <View style={styles.card}>
@@ -72,7 +80,10 @@ const Home = () => {
           </View>
         </View>
       </ScrollView>
-      <BottomNavStudent active="home"/>
+
+      <NotificationPopup visible={showNotifications} onClose={() => setShowNotifications(false)} />
+
+      <BottomNavStudent active="home" />
     </>
   );
 };

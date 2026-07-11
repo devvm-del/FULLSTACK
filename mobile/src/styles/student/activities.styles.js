@@ -15,11 +15,21 @@ export default StyleSheet.create({
 
   },
 
-  headerProfileIcon: {
-    alignItems: 'flex-end',
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     marginEnd: 15,
-
+    gap: 8
   },
+
+
+  notificationIcon: {
+    padding: 10,
+    backgroundColor: '#5C8F48',
+    borderRadius: 15
+  },
+
 
   content: {
     padding: 20,
